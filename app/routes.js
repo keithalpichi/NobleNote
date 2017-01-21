@@ -37,7 +37,7 @@ export default function createRoutes(store) {
       path: '/sign-up',
       name: 'signUp',
       getComponent(nextState, cb) {
-        import('components/registrations/new')
+        import('containers/Registration')
           .then(loadModule(cb))
           .catch(errorLoading);
       },
@@ -45,7 +45,7 @@ export default function createRoutes(store) {
       path: '/sign-in',
       name: 'signIn',
       getComponent(nextState, cb) {
-        import('components/sessions/new')
+        import('containers/Session')
           .then(loadModule(cb))
           .catch(errorLoading)
       },
