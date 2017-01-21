@@ -6,8 +6,8 @@
 import { combineReducers } from 'redux-immutable';
 import { fromJS } from 'immutable';
 import { LOCATION_CHANGE } from 'react-router-redux';
-
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
+import CONSTANTS from 'constants'
 
 /*
  * routeReducer
@@ -37,11 +37,49 @@ function routeReducer(state = routeInitialState, action) {
   }
 }
 
+
+/*
+* Session/user state
+*/
+const userInitialState = fromJS({
+  user: null
+})
+
+function userReducer(state = userInitialState, action) {
+  switch (action.type) {
+    case CONSTANTS.USER_SIGNED_IN:
+      // set action.user to user key
+    case CONSTANTS.USER_SIGNED_OUT:
+      return userInitialState
+    default:
+      return state
+  }
+}
+
+/*
+ * Global error state
+ */
+const errorInitialState = fromJS({
+  errors: null
+})
+function errorReducer(state = errorInitialState, action) {
+  switch (action.type) {
+    case CONSTANTS.ERROR_SESSIONS:
+      // return with session error
+    case CONSTANTS.ERROR_REGISTRATIONS:
+      // return with registration error
+    default:
+      return state
+  }
+}
+
 /**
  * Creates the main reducer with the asynchronously loaded ones
  */
 export default function createReducer(asyncReducers) {
   return combineReducers({
+    errors: errorReducer,
+    user: userReducer,
     route: routeReducer,
     language: languageProviderReducer,
     ...asyncReducers,
