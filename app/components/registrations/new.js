@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { setDocumentTitle, renderErrorsFor } from '../../utils'
 import { connect }              from 'react-redux'
 import { Link }                 from 'react-router'
+import Modal from '../Modal'
+import Form  from '../Form'
 
 class RegistrationsNew extends Component {
   componentDidMount() {
@@ -26,10 +28,10 @@ class RegistrationsNew extends Component {
     const { errors } = this.props
 
     return (
-      <div className="view-container">
+      <Modal>
           <h1>Start here</h1>
 
-          <form onSubmit={::this._handleSubmit}>
+          <Form onSubmit={::this._handleSubmit}>
             <div className="field">
               <input ref="firstName" type="text" placeholder="First name" required={true}/>
               {renderErrorsFor(errors, 'first_name')}
@@ -56,9 +58,9 @@ class RegistrationsNew extends Component {
             </div>
 
             <button type="submit">Sign up</button>
-          </form>
+          </Form>
           <Link to="/sign-in">Sign in</Link>
-      </div>
+      </Modal>
     )
   }
 }

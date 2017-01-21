@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { connect }          from 'react-redux';
 import { Link }             from 'react-router';
 import { setDocumentTitle } from '../../utils';
+import Modal from '../Modal'
+import Form from '../Form'
 
 class SessionsNew extends Component {
   componentDidMount() {
@@ -18,9 +20,9 @@ class SessionsNew extends Component {
 
   render() {
     return (
-      <div className="view-container">
+      <Modal>
         <h1>Sign in here</h1>
-        <form id="sign_in_form" onSubmit={::this._handleSubmit}>
+        <Form id="sign_in_form" onSubmit={::this._handleSubmit}>
             <div className="field">
               <input
                 ref="email"
@@ -40,9 +42,9 @@ class SessionsNew extends Component {
               />
             </div>
             <button type="submit">Sign in</button>
-          </form>
+          </Form>
           <Link to="/sign-up">Create new account?</Link>
-      </div>
+      </Modal>
     )
   }
 }
